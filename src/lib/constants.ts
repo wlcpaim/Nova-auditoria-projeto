@@ -1,0 +1,1 @@
+export const AUTH_STORAGE_KEY = 'barbershop_auth_session';

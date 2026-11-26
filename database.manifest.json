@@ -1,0 +1,161 @@
+{
+  "version": 1,
+  "tables": [
+    {
+      "name": "barbershops",
+      "publicRead": true,
+      "columns": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "slug",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "address",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "phone",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "services",
+      "publicRead": true,
+      "columns": [
+        {
+          "name": "barbershop_id",
+          "type": "uuid",
+          "required": true,
+          "references": "barbershops"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "price",
+          "type": "numeric",
+          "required": true
+        },
+        {
+          "name": "duration",
+          "type": "integer",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "employees",
+      "publicRead": true,
+      "columns": [
+        {
+          "name": "barbershop_id",
+          "type": "uuid",
+          "required": true,
+          "references": "barbershops"
+        },
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "role",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "commission_rate",
+          "type": "numeric",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "appointments",
+      "publicRead": true,
+      "columns": [
+        {
+          "name": "barbershop_id",
+          "type": "uuid",
+          "required": true,
+          "references": "barbershops"
+        },
+        {
+          "name": "service_id",
+          "type": "uuid",
+          "required": true,
+          "references": "services"
+        },
+        {
+          "name": "employee_id",
+          "type": "uuid",
+          "required": false,
+          "references": "employees"
+        },
+        {
+          "name": "customer_name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "customer_phone",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "date",
+          "type": "timestamptz",
+          "required": true
+        },
+        {
+          "name": "status",
+          "type": "text",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "financial_records",
+      "publicRead": false,
+      "columns": [
+        {
+          "name": "barbershop_id",
+          "type": "uuid",
+          "required": true,
+          "references": "barbershops"
+        },
+        {
+          "name": "type",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "amount",
+          "type": "numeric",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "date",
+          "type": "date",
+          "required": true
+        }
+      ]
+    }
+  ]
+}
